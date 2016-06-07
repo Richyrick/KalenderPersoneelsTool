@@ -27,7 +27,7 @@ public class Main {
     private static void schrijfNaarCSV(ArrayList<Werkdag> dagen) throws IOException {
         BufferedWriter out = new BufferedWriter(new FileWriter("result.csv"));
         CSVWriter writer = new CSVWriter(out);
-        String[] headers = {"Subject", "Start Date", "Start Time", "End Time", "Location"};
+        String[] headers = {"Subject", "Start Date", "Start Time", "EndTime", "Location"};
         writer.writeNext(headers);
         for (Werkdag dag : dagen){
             String startDate = dag.getDatum();

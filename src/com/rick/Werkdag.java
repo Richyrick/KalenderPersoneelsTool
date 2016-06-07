@@ -18,9 +18,15 @@ public class Werkdag {
 
     public Werkdag(String beginTijd, String dagVanWeek, String datum, String eindTijd) throws ParseException {
         this.dagVanWeek = dagVanWeek;
+        this.datum = datum;
         moetWerken(beginTijd);
-        correctDate(datum);
-        if (moetWerken) correctTijden(beginTijd, eindTijd);
+        //correctDate(datum);
+
+        if (moetWerken) {
+            //correctTijden(beginTijd, eindTijd);
+            this.beginTijd = beginTijd;
+            this.eindTijd = eindTijd;
+        }
     }
 
     private void moetWerken(String beginTijd) {
