@@ -1,19 +1,24 @@
 package com.rick;
 
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException, IOException {
         ArrayList<String> inputLines = vraagInput();
         ArrayList<Werkdag> dagen = createWerkdagen(inputLines);
+
+        CSVWriter.writeCSV(dagen);
+
         for (int i = 0; i<inputLines.size(); i++){
             System.out.println(inputLines.get(i));
         }
     }
 
-    private static ArrayList<Werkdag> createWerkdagen(ArrayList<String> inputLines) {
+    private static ArrayList<Werkdag> createWerkdagen(ArrayList<String> inputLines) throws ParseException {
         for (int i = 0; i < 7; i++) inputLines.remove(0); //Troep bovenaan tabel eruit
         ArrayList<Werkdag> dagen = new ArrayList<Werkdag>();
         for (int j = 0; j < inputLines.size(); j = j + 6){
