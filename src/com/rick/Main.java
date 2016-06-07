@@ -27,13 +27,13 @@ public class Main {
     private static void schrijfNaarCSV(ArrayList<Werkdag> dagen) throws IOException {
         BufferedWriter out = new BufferedWriter(new FileWriter("result.csv"));
         CSVWriter writer = new CSVWriter(out);
-        String[] headers = {"Subject", "Start Date", "Start Time", "EndTime", "Location"};
+        String[] headers = {"Subject", "Start Date", "Start Time", "EndTime", "EndDate", "Location"};
         writer.writeNext(headers);
         for (Werkdag dag : dagen){
             String startDate = dag.getDatum();
             String startTime = dag.getBeginTijd();
             String endTime = dag.getEindTijd();
-            writer.writeNext(new String[]{"Werken", startDate, startTime, endTime, "Jumbo Bert Vis Steenwijk"});
+            writer.writeNext(new String[]{"Werken", startDate, startTime, endTime, startDate, "Jumbo Bert Vis Steenwijk"});
         }
         writer.close();
     }
