@@ -19,9 +19,7 @@ public class Main {
 
         schrijfNaarCSV(dagen);
 
-        for (int i = 0; i<inputLines.size(); i++){
-            System.out.println(inputLines.get(i));
-        }
+        System.out.println("Geexporteerd naar CSV bestand");
     }
 
     private static void schrijfNaarCSV(ArrayList<Werkdag> dagen) throws IOException {
