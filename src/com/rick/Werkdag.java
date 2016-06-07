@@ -47,4 +47,15 @@ public class Werkdag {
     public void setEindTijd(String eindTijd) {
         this.eindTijd = eindTijd;
     }
+
+    @Override
+    public String toString() {
+        return "Werkdag{" +
+                "Subject=Werken" +
+                ", Start Date=" + datum +
+                ", Start Time=" + beginTijd  +
+                ", End Time=" + eindTijd +
+                ", Location=Jumbo Bert Vis Steenwijk" +
+                '}';
+    }
 }
