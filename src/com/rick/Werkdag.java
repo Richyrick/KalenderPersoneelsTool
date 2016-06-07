@@ -1,5 +1,9 @@
 package com.rick;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by Rick on 7-6-2016.
  */
@@ -9,11 +13,18 @@ public class Werkdag {
     private String beginTijd;
     private String eindTijd;
 
-    public Werkdag(String beginTijd, String dagVanWeek, String datum, String eindTijd) {
+    public Werkdag(String beginTijd, String dagVanWeek, String datum, String eindTijd) throws ParseException {
         this.beginTijd = beginTijd;
         this.dagVanWeek = dagVanWeek;
-        this.datum = datum;
         this.eindTijd = eindTijd;
+        correctDate(datum);
+    }
+
+    private void correctDate(String datumStr) throws ParseException {
+        SimpleDateFormat original = new SimpleDateFormat("dd-MM-yyyy");
+        Date datumDate = original.parse(datumStr);
+        SimpleDateFormat nieuw = new SimpleDateFormat("MM/dd/yyyy");
+        datum = nieuw.format(datumDate);
     }
 
     public String getBeginTijd() {
