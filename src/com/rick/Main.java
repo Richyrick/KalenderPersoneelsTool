@@ -1,11 +1,14 @@
 package com.rick;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
+import com.opencsv.CSVWriter;
 
 public class Main {
 
@@ -14,9 +17,25 @@ public class Main {
         ArrayList<Werkdag> dagen = createWerkdagen(inputLines);
         verwijderVrijeDagen(dagen);
 
+        schrijfNaarCSV(dagen);
+
         for (int i = 0; i<inputLines.size(); i++){
             System.out.println(inputLines.get(i));
         }
+    }
+
+    private static void schrijfNaarCSV(ArrayList<Werkdag> dagen) throws IOException {
+        BufferedWriter out = new BufferedWriter(new FileWriter("result.csv"));
+        CSVWriter writer = new CSVWriter(out);
+        String[] headers = {"Subject", "Start Date", "Start Time", "End Time", "Location"};
+        writer.writeNext(headers);
+        for (Werkdag dag : dagen){
+            String startDate = dag.getDatum();
+            String startTime = dag.getBeginTijd();
+            String endTime = dag.getEindTijd();
+            writer.writeNext(new String[]{"Werken", startDate, startTime, endTime, "Jumbo Bert Vis Steenwijk"});
+        }
+        writer.close();
     }
 
     private static void verwijderVrijeDagen(ArrayList<Werkdag> dagen) {
