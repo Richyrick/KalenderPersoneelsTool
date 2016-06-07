@@ -14,10 +14,19 @@ public class Werkdag {
     private String eindTijd;
 
     public Werkdag(String beginTijd, String dagVanWeek, String datum, String eindTijd) throws ParseException {
-        this.beginTijd = beginTijd;
         this.dagVanWeek = dagVanWeek;
-        this.eindTijd = eindTijd;
+        correctTijden(beginTijd, eindTijd);
         correctDate(datum);
+    }
+
+    private void correctTijden(String beginTijd, String eindTijd) throws ParseException {
+        SimpleDateFormat original = new SimpleDateFormat("hh:mm");
+        Date beginTijdDate = original.parse(beginTijd);
+        Date eindTijdDate = original.parse(eindTijd);
+
+        SimpleDateFormat nieuw = new SimpleDateFormat("h:mm a");
+        this.beginTijd = nieuw.format(beginTijdDate);
+        this.eindTijd = nieuw.format(eindTijdDate);
     }
 
     private void correctDate(String datumStr) throws ParseException {
