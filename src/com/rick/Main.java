@@ -1,8 +1,10 @@
 package com.rick;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class Main {
@@ -10,11 +12,17 @@ public class Main {
     public static void main(String[] args) throws ParseException, IOException {
         ArrayList<String> inputLines = vraagInput();
         ArrayList<Werkdag> dagen = createWerkdagen(inputLines);
-
-        CSVWriter.writeCSV(dagen);
+        verwijderVrijeDagen(dagen);
 
         for (int i = 0; i<inputLines.size(); i++){
             System.out.println(inputLines.get(i));
+        }
+    }
+
+    private static void verwijderVrijeDagen(ArrayList<Werkdag> dagen) {
+        for (Iterator<Werkdag> iterator = dagen.iterator(); iterator.hasNext();){
+            Werkdag dag = iterator.next();
+            if (!dag.moetWerken) iterator.remove();
         }
     }
 

@@ -8,6 +8,15 @@ import java.util.Date;
  * Created by Rick on 7-6-2016.
  */
 public class Werkdag {
+    public String getSubject() {
+        return Subject;
+    }
+
+    public void setSubject(String subject) {
+        Subject = subject;
+    }
+
+    public String Subject = "Werken";
     private String datum;
     private String dagVanWeek;
     private String beginTijd;
